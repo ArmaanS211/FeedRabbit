@@ -4,8 +4,8 @@ var gardenImg,rabbitImg, appleImg, leafImg;
 function preload(){
   gardenImg = loadImage("garden.png");
   rabbitImg = loadImage("rabbit.png");
-  appleImg = loadImage("apple.png");
-  leafImg = loadImage("leaf.png");
+  appleImg = loadImage("apple-removebg-preview.png");
+  leafImg = loadImage("leaf-removebg-preview.png");
   
 }
 
@@ -44,6 +44,7 @@ function draw() {
       createLeaves();
     }
   }
+  
 }
 
 function createApples(){
@@ -53,6 +54,9 @@ function createApples(){
   apple.scale = 0.1;
   apple.lifetime = 100;
 
+  apple.depth = rabbit.depth;
+  rabbit.depth += 1;
+
 }
 
 function createLeaves(){
@@ -61,5 +65,8 @@ function createLeaves(){
   leaf.velocityY = 4;
   leaf.scale = 0.1;
   leaf.lifetime = 100;
+
+  leaf.depth = rabbit.depth;
+  rabbit.depth += 1;
 
 }
