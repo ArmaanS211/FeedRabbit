@@ -22,6 +22,12 @@ garden.addImage(gardenImg);
 rabbit = createSprite(180,340,30,30);
 rabbit.scale =0.09;
 rabbit.addImage(rabbitImg);
+
+//apple leaf group
+appleG = createGroup();
+leafG = createGroup();
+
+rabbit.setCollider("circle", 0, 0, 400);
 }
 
 
@@ -44,6 +50,18 @@ function draw() {
       createLeaves();
     }
   }
+
+  for(var i = 0;i<appleG.length; i++){
+    if(appleG.get(i).isTouching(rabbit)){
+      appleG.get(i).destroy();
+    }
+  }
+
+  for(var j = 0;j<leafG.length; j++){
+    if(leafG.get(j).isTouching(rabbit)){
+      leafG.get(j).destroy();
+    }
+  }
   
 }
 
@@ -53,6 +71,8 @@ function createApples(){
   apple.velocityY = 4;
   apple.scale = 0.1;
   apple.lifetime = 100;
+
+  appleG.add(apple);
 
   apple.depth = rabbit.depth;
   rabbit.depth += 1;
@@ -66,6 +86,7 @@ function createLeaves(){
   leaf.scale = 0.1;
   leaf.lifetime = 100;
 
+  leafG.add(leaf);
   leaf.depth = rabbit.depth;
   rabbit.depth += 1;
 
